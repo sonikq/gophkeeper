@@ -3,32 +3,15 @@ package server
 import (
 	"fmt"
 	"github.com/sonikq/gophkeeper/internal/app/server/config"
-	gophkeeper "github.com/sonikq/gophkeeper/internal/delivery/grpc/v1"
-	pb "github.com/sonikq/gophkeeper/internal/delivery/grpc/v1"
+	grpcserv "github.com/sonikq/gophkeeper/internal/delivery/grpc"
 	"github.com/sonikq/gophkeeper/internal/repository"
 	"github.com/sonikq/gophkeeper/internal/usecase"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
 	"os"
 	"os/signal"
 )
-
-type GophKeeperServer struct {
-	pb.UnimplementedGophKeeperHandlerServer
-	Usecase usecase.GophKeeperUseCase
-}
-
-func newGophKeeperServerGrpc(gserver *grpc.Server, usecase usecase.GophKeeperUseCase) {
-
-	gophKeeperServer := &GophKeeperServer{
-		Usecase: usecase,
-	}
-
-	gophkeeper.RegisterGophKeeperHandlerServer(gserver, gophKeeperServer)
-	reflection.Register(gserver)
-}
 
 func Run() {
 	idleConnsClosed := make(chan struct{})
@@ -63,7 +46,7 @@ func Run() {
 
 	usecaseManager := usecase.NewGophKeeperUseCase(repo)
 
-	newGophKeeperServerGrpc(server, usecaseManager)
+	grpcserv.NewGophKeeperServer(server, usecaseManager)
 
 	fmt.Println("gRPC server starts working")
 	if err = server.Serve(listen); err != nil {

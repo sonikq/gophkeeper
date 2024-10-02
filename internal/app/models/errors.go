@@ -3,6 +3,7 @@ package models
 import "errors"
 
 var (
+	ErrDatabaseError       = errors.New("database internal error")
 	ErrInvalidToken        = errors.New("invalid token")
 	ErrUserAlreadyExists   = errors.New("user already exists")
 	ErrInMemoryDB          = errors.New("InMemoryDB internal error")
