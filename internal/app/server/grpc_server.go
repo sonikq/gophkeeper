@@ -1,7 +1,6 @@
 package server
 
 import (
-	"context"
 	"fmt"
 	"github.com/sonikq/gophkeeper/internal/app/server/config"
 	gophkeeper "github.com/sonikq/gophkeeper/internal/delivery/grpc/v1"
@@ -41,8 +40,8 @@ func Run() {
 		log.Fatalf("failed to initialize config: %s", err.Error())
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), cfg.CtxTimeout)
-	defer cancel()
+	//ctx, cancel := context.WithTimeout(context.Background(), cfg.CtxTimeout)
+	//defer cancel()
 
 	listen, err := net.Listen("tcp", cfg.RunAddress)
 	if err != nil {
@@ -60,7 +59,7 @@ func Run() {
 		close(idleConnsClosed)
 	}()
 
-	repo := repository.NewGophKeeperRepository(ctx, cfg.Postgres)
+	repo := repository.NewGophKeeperRepository()
 
 	usecaseManager := usecase.NewGophKeeperUseCase(repo)
 
