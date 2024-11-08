@@ -1,35 +1,17 @@
 package server
 
 import (
-	"context"
 	"fmt"
 	"github.com/sonikq/gophkeeper/internal/app/server/config"
-	gophkeeper "github.com/sonikq/gophkeeper/internal/delivery/grpc/v1"
-	pb "github.com/sonikq/gophkeeper/internal/delivery/grpc/v1"
+	grpcserv "github.com/sonikq/gophkeeper/internal/delivery/grpc"
 	"github.com/sonikq/gophkeeper/internal/repository"
 	"github.com/sonikq/gophkeeper/internal/usecase"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
 	"os"
 	"os/signal"
 )
-
-type GophKeeperServer struct {
-	pb.UnimplementedGophKeeperHandlerServer
-	Usecase usecase.GophKeeperUseCase
-}
-
-func newGophKeeperServerGrpc(gserver *grpc.Server, usecase usecase.GophKeeperUseCase) {
-
-	gophKeeperServer := &GophKeeperServer{
-		Usecase: usecase,
-	}
-
-	gophkeeper.RegisterGophKeeperHandlerServer(gserver, gophKeeperServer)
-	reflection.Register(gserver)
-}
 
 func Run() {
 	idleConnsClosed := make(chan struct{})
@@ -41,8 +23,8 @@ func Run() {
 		log.Fatalf("failed to initialize config: %s", err.Error())
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), cfg.CtxTimeout)
-	defer cancel()
+	//ctx, cancel := context.WithTimeout(context.Background(), cfg.CtxTimeout)
+	//defer cancel()
 
 	listen, err := net.Listen("tcp", cfg.RunAddress)
 	if err != nil {
@@ -60,11 +42,11 @@ func Run() {
 		close(idleConnsClosed)
 	}()
 
-	repo := repository.NewGophKeeperRepository(ctx, cfg.Postgres)
+	repo := repository.NewGophKeeperRepository()
 
 	usecaseManager := usecase.NewGophKeeperUseCase(repo)
 
-	newGophKeeperServerGrpc(server, usecaseManager)
+	grpcserv.NewGophKeeperServer(server, usecaseManager)
 
 	fmt.Println("gRPC server starts working")
 	if err = server.Serve(listen); err != nil {

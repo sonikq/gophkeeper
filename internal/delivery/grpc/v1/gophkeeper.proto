@@ -6,6 +6,147 @@ option go_package = "github.com/sonikq/gophkeeper";
 
 service GophKeeperHandler {
   rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc SaveCredentials(SaveCredentialsDataRequest) returns (SaveCredentialsDataResponse);
+  rpc LoadCredentials(LoadCredentialsDataRequest) returns (LoadCredentialsDataResponse);
+  rpc SaveText(SaveTextDataRequest) returns (SaveTextDataResponse);
+  rpc LoadText(LoadTextDataRequest) returns (LoadTextDataResponse);
+  rpc SaveBinary(SaveBinaryDataRequest) returns (SaveBinaryDataResponse);
+  rpc LoadBinary(LoadBinaryDataRequest) returns (LoadBinaryDataResponse);
+  rpc SaveBankCard(SaveBankCardDataRequest) returns (SaveBankCardDataResponse);
+  rpc LoadBankCard(LoadBankCardDataRequest) returns (LoadBankCardDataResponse);
+  rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
+  rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+}
+
+message User {
+  string login = 1;
+  string password = 2;
+}
+
+message RegisterUserRequest {
+  User user = 1;
+}
+
+message RegisterUserResponse {
+  string error = 1;
+}
+
+message LoginUserRequest {
+  User user = 1;
+}
+
+message LoginUserResponse {
+  string token = 1;
+  string error = 2;
+}
+
+message Meta {
+  string content = 1;
+}
+
+message CredentialsData {
+  string uuid = 1;
+  string login = 2;
+  string password = 3;
+  optional Meta meta = 4;
+}
+
+message SaveCredentialsDataRequest {
+  string token = 1;
+  CredentialsData data = 2;
+}
+
+message SaveCredentialsDataResponse {
+  string error = 1;
+}
+
+message LoadCredentialsDataRequest {
+  string token = 1;
+  string uuid = 2;
+}
+
+message LoadCredentialsDataResponse {
+  string error = 1;
+  CredentialsData data = 2;
+}
+
+message TextData {
+  string uuid = 1;
+  string data = 2;
+  optional Meta meta = 3;
+}
+
+message SaveTextDataRequest {
+  string token = 1;
+  TextData data = 2;
+}
+
+message SaveTextDataResponse {
+  string error = 1;
+}
+
+message LoadTextDataRequest {
+  string token = 1;
+  string uuid = 2;
+}
+
+message LoadTextDataResponse {
+  string error = 1;
+  TextData data = 2;
+}
+
+message BinaryData {
+  string uuid = 1;
+  bytes data = 2;
+  optional Meta meta = 3;
+}
+
+message SaveBinaryDataRequest {
+  string token = 1;
+  BinaryData data = 2;
+}
+
+message SaveBinaryDataResponse {
+  string error = 1;
+}
+
+message LoadBinaryDataRequest {
+  string token = 1;
+  string uuid = 2;
+}
+
+message LoadBinaryDataResponse {
+  string error = 1;
+  BinaryData data = 2;
+}
+
+message BankCardData {
+  string uuid = 1;
+  string number = 2;
+  string owner = 3;
+  string expires_at = 4;
+  string secret_code = 5;
+  string pin_code = 6;
+  optional Meta meta = 7;
+}
+
+message SaveBankCardDataRequest {
+  string token = 1;
+  BankCardData data = 2;
+}
+
+message SaveBankCardDataResponse {
+  string error = 1;
+}
+
+message LoadBankCardDataRequest {
+  string token = 1;
+  string uuid = 2;
+}
+
+message LoadBankCardDataResponse {
+  string error = 1;
+  BankCardData data = 2;
 }
 
 /*

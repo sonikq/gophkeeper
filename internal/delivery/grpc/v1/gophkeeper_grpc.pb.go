@@ -20,7 +20,17 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	GophKeeperHandler_Ping_FullMethodName = "/gophkeeper.GophKeeperHandler/Ping"
+	GophKeeperHandler_Ping_FullMethodName            = "/gophkeeper.GophKeeperHandler/Ping"
+	GophKeeperHandler_SaveCredentials_FullMethodName = "/gophkeeper.GophKeeperHandler/SaveCredentials"
+	GophKeeperHandler_LoadCredentials_FullMethodName = "/gophkeeper.GophKeeperHandler/LoadCredentials"
+	GophKeeperHandler_SaveText_FullMethodName        = "/gophkeeper.GophKeeperHandler/SaveText"
+	GophKeeperHandler_LoadText_FullMethodName        = "/gophkeeper.GophKeeperHandler/LoadText"
+	GophKeeperHandler_SaveBinary_FullMethodName      = "/gophkeeper.GophKeeperHandler/SaveBinary"
+	GophKeeperHandler_LoadBinary_FullMethodName      = "/gophkeeper.GophKeeperHandler/LoadBinary"
+	GophKeeperHandler_SaveBankCard_FullMethodName    = "/gophkeeper.GophKeeperHandler/SaveBankCard"
+	GophKeeperHandler_LoadBankCard_FullMethodName    = "/gophkeeper.GophKeeperHandler/LoadBankCard"
+	GophKeeperHandler_RegisterUser_FullMethodName    = "/gophkeeper.GophKeeperHandler/RegisterUser"
+	GophKeeperHandler_LoginUser_FullMethodName       = "/gophkeeper.GophKeeperHandler/LoginUser"
 )
 
 // GophKeeperHandlerClient is the client API for GophKeeperHandler service.
@@ -28,6 +38,16 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GophKeeperHandlerClient interface {
 	Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*empty.Empty, error)
+	SaveCredentials(ctx context.Context, in *SaveCredentialsDataRequest, opts ...grpc.CallOption) (*SaveCredentialsDataResponse, error)
+	LoadCredentials(ctx context.Context, in *LoadCredentialsDataRequest, opts ...grpc.CallOption) (*LoadCredentialsDataResponse, error)
+	SaveText(ctx context.Context, in *SaveTextDataRequest, opts ...grpc.CallOption) (*SaveTextDataResponse, error)
+	LoadText(ctx context.Context, in *LoadTextDataRequest, opts ...grpc.CallOption) (*LoadTextDataResponse, error)
+	SaveBinary(ctx context.Context, in *SaveBinaryDataRequest, opts ...grpc.CallOption) (*SaveBinaryDataResponse, error)
+	LoadBinary(ctx context.Context, in *LoadBinaryDataRequest, opts ...grpc.CallOption) (*LoadBinaryDataResponse, error)
+	SaveBankCard(ctx context.Context, in *SaveBankCardDataRequest, opts ...grpc.CallOption) (*SaveBankCardDataResponse, error)
+	LoadBankCard(ctx context.Context, in *LoadBankCardDataRequest, opts ...grpc.CallOption) (*LoadBankCardDataResponse, error)
+	RegisterUser(ctx context.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error)
+	LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
 }
 
 type gophKeeperHandlerClient struct {
@@ -48,11 +68,121 @@ func (c *gophKeeperHandlerClient) Ping(ctx context.Context, in *empty.Empty, opt
 	return out, nil
 }
 
+func (c *gophKeeperHandlerClient) SaveCredentials(ctx context.Context, in *SaveCredentialsDataRequest, opts ...grpc.CallOption) (*SaveCredentialsDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveCredentialsDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_SaveCredentials_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) LoadCredentials(ctx context.Context, in *LoadCredentialsDataRequest, opts ...grpc.CallOption) (*LoadCredentialsDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoadCredentialsDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_LoadCredentials_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) SaveText(ctx context.Context, in *SaveTextDataRequest, opts ...grpc.CallOption) (*SaveTextDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveTextDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_SaveText_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) LoadText(ctx context.Context, in *LoadTextDataRequest, opts ...grpc.CallOption) (*LoadTextDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoadTextDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_LoadText_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) SaveBinary(ctx context.Context, in *SaveBinaryDataRequest, opts ...grpc.CallOption) (*SaveBinaryDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveBinaryDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_SaveBinary_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) LoadBinary(ctx context.Context, in *LoadBinaryDataRequest, opts ...grpc.CallOption) (*LoadBinaryDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoadBinaryDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_LoadBinary_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) SaveBankCard(ctx context.Context, in *SaveBankCardDataRequest, opts ...grpc.CallOption) (*SaveBankCardDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveBankCardDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_SaveBankCard_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) LoadBankCard(ctx context.Context, in *LoadBankCardDataRequest, opts ...grpc.CallOption) (*LoadBankCardDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoadBankCardDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_LoadBankCard_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) RegisterUser(ctx context.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegisterUserResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_RegisterUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperHandlerClient) LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginUserResponse)
+	err := c.cc.Invoke(ctx, GophKeeperHandler_LoginUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GophKeeperHandlerServer is the server API for GophKeeperHandler service.
 // All implementations must embed UnimplementedGophKeeperHandlerServer
 // for forward compatibility
 type GophKeeperHandlerServer interface {
 	Ping(context.Context, *empty.Empty) (*empty.Empty, error)
+	SaveCredentials(context.Context, *SaveCredentialsDataRequest) (*SaveCredentialsDataResponse, error)
+	LoadCredentials(context.Context, *LoadCredentialsDataRequest) (*LoadCredentialsDataResponse, error)
+	SaveText(context.Context, *SaveTextDataRequest) (*SaveTextDataResponse, error)
+	LoadText(context.Context, *LoadTextDataRequest) (*LoadTextDataResponse, error)
+	SaveBinary(context.Context, *SaveBinaryDataRequest) (*SaveBinaryDataResponse, error)
+	LoadBinary(context.Context, *LoadBinaryDataRequest) (*LoadBinaryDataResponse, error)
+	SaveBankCard(context.Context, *SaveBankCardDataRequest) (*SaveBankCardDataResponse, error)
+	LoadBankCard(context.Context, *LoadBankCardDataRequest) (*LoadBankCardDataResponse, error)
+	RegisterUser(context.Context, *RegisterUserRequest) (*RegisterUserResponse, error)
+	LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error)
 	mustEmbedUnimplementedGophKeeperHandlerServer()
 }
 
@@ -62,6 +192,36 @@ type UnimplementedGophKeeperHandlerServer struct {
 
 func (UnimplementedGophKeeperHandlerServer) Ping(context.Context, *empty.Empty) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) SaveCredentials(context.Context, *SaveCredentialsDataRequest) (*SaveCredentialsDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveCredentials not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) LoadCredentials(context.Context, *LoadCredentialsDataRequest) (*LoadCredentialsDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoadCredentials not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) SaveText(context.Context, *SaveTextDataRequest) (*SaveTextDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveText not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) LoadText(context.Context, *LoadTextDataRequest) (*LoadTextDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoadText not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) SaveBinary(context.Context, *SaveBinaryDataRequest) (*SaveBinaryDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveBinary not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) LoadBinary(context.Context, *LoadBinaryDataRequest) (*LoadBinaryDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoadBinary not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) SaveBankCard(context.Context, *SaveBankCardDataRequest) (*SaveBankCardDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveBankCard not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) LoadBankCard(context.Context, *LoadBankCardDataRequest) (*LoadBankCardDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoadBankCard not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) RegisterUser(context.Context, *RegisterUserRequest) (*RegisterUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
+}
+func (UnimplementedGophKeeperHandlerServer) LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
 }
 func (UnimplementedGophKeeperHandlerServer) mustEmbedUnimplementedGophKeeperHandlerServer() {}
 
@@ -94,6 +254,186 @@ func _GophKeeperHandler_Ping_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GophKeeperHandler_SaveCredentials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveCredentialsDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).SaveCredentials(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_SaveCredentials_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).SaveCredentials(ctx, req.(*SaveCredentialsDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_LoadCredentials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoadCredentialsDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).LoadCredentials(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_LoadCredentials_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).LoadCredentials(ctx, req.(*LoadCredentialsDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_SaveText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveTextDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).SaveText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_SaveText_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).SaveText(ctx, req.(*SaveTextDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_LoadText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoadTextDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).LoadText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_LoadText_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).LoadText(ctx, req.(*LoadTextDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_SaveBinary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveBinaryDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).SaveBinary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_SaveBinary_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).SaveBinary(ctx, req.(*SaveBinaryDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_LoadBinary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoadBinaryDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).LoadBinary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_LoadBinary_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).LoadBinary(ctx, req.(*LoadBinaryDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_SaveBankCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveBankCardDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).SaveBankCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_SaveBankCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).SaveBankCard(ctx, req.(*SaveBankCardDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_LoadBankCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoadBankCardDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).LoadBankCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_LoadBankCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).LoadBankCard(ctx, req.(*LoadBankCardDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).RegisterUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_RegisterUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).RegisterUser(ctx, req.(*RegisterUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperHandler_LoginUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperHandlerServer).LoginUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperHandler_LoginUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperHandlerServer).LoginUser(ctx, req.(*LoginUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GophKeeperHandler_ServiceDesc is the grpc.ServiceDesc for GophKeeperHandler service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -104,6 +444,46 @@ var GophKeeperHandler_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Ping",
 			Handler:    _GophKeeperHandler_Ping_Handler,
+		},
+		{
+			MethodName: "SaveCredentials",
+			Handler:    _GophKeeperHandler_SaveCredentials_Handler,
+		},
+		{
+			MethodName: "LoadCredentials",
+			Handler:    _GophKeeperHandler_LoadCredentials_Handler,
+		},
+		{
+			MethodName: "SaveText",
+			Handler:    _GophKeeperHandler_SaveText_Handler,
+		},
+		{
+			MethodName: "LoadText",
+			Handler:    _GophKeeperHandler_LoadText_Handler,
+		},
+		{
+			MethodName: "SaveBinary",
+			Handler:    _GophKeeperHandler_SaveBinary_Handler,
+		},
+		{
+			MethodName: "LoadBinary",
+			Handler:    _GophKeeperHandler_LoadBinary_Handler,
+		},
+		{
+			MethodName: "SaveBankCard",
+			Handler:    _GophKeeperHandler_SaveBankCard_Handler,
+		},
+		{
+			MethodName: "LoadBankCard",
+			Handler:    _GophKeeperHandler_LoadBankCard_Handler,
+		},
+		{
+			MethodName: "RegisterUser",
+			Handler:    _GophKeeperHandler_RegisterUser_Handler,
+		},
+		{
+			MethodName: "LoginUser",
+			Handler:    _GophKeeperHandler_LoginUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
