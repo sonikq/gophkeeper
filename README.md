@@ -1,2 +1,2 @@
 # gophkeeper
-Password manager from Yandex.
+Password manager.
